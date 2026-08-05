@@ -22,6 +22,9 @@ frontend/dist/
 # VS Code
 .vscode/
 
+# MYSQL Commands
+/docs/MySQL_Commands.sql
+
 # Temporary Files
 *.tmp
 *.swp
