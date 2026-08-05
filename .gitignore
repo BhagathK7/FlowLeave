@@ -1,2 +1,27 @@
-target/
+# IntelliJ IDEA
 .idea/
+*.iml
+
+# Maven
+target/
+
+# Logs
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Environment Variables
+.env
+
+# Node.js (Frontend)
+frontend/node_modules/
+frontend/dist/
+
+# VS Code
+.vscode/
+
+# Temporary Files
+*.tmp
+*.swp
