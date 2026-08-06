@@ -23,6 +23,5 @@ public class AuthController {
                         employee.getEmail(),
                         employee.getPassword())
                 .orElse(null);
-
     }
 }

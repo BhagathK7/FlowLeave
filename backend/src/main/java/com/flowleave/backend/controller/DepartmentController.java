@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/departments")
+@CrossOrigin(origins = "http://localhost:5173")
 public class DepartmentController {
 
     private final DepartmentService departmentService;
@@ -27,8 +28,16 @@ public class DepartmentController {
     }
 
     @GetMapping("/{id}")
-    public Department getDepartmentById(@PathVariable Long id) {
+    public Department getDepartment(@PathVariable Long id) {
         return departmentService.getDepartmentById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Department updateDepartment(
+            @PathVariable Long id,
+            @RequestBody Department department) {
+
+        return departmentService.updateDepartment(id, department);
     }
 
     @DeleteMapping("/{id}")
