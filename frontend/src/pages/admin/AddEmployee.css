@@ -1,0 +1,68 @@
+.add-employee{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.add-employee form{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+    margin-top:25px;
+
+}
+
+.add-employee input,
+.add-employee select{
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:white;
+
+}
+
+.add-employee button{
+
+    grid-column:span 2;
+
+    padding:16px;
+
+    background:var(--primary);
+
+    color:white;
+
+    border-radius:14px;
+
+}
+
+@media(max-width:768px){
+
+    .add-employee form{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .add-employee button{
+
+        grid-column:auto;
+
+    }
+
+}

@@ -1,32 +1,29 @@
+import { useEffect, useState } from "react";
 import "./EmployeeList.css";
+import { getEmployees } from "../../services/employeeService";
 
 function EmployeeList() {
 
-    const employees = [
+    const [employees, setEmployees] = useState([]);
 
-        {
-            id:1,
-            code:"EMP001",
-            name:"John Carter",
-            department:"IT",
-            role:"Employee"
-        },
-        {
-            id:2,
-            code:"EMP002",
-            name:"Emma Watson",
-            department:"HR",
-            role:"Manager"
-        },
-        {
-            id:3,
-            code:"EMP003",
-            name:"David Miller",
-            department:"Finance",
-            role:"Employee"
+    useEffect(() => {
+        loadEmployees();
+    }, []);
+
+    async function loadEmployees() {
+
+        try {
+
+            const data = await getEmployees();
+            setEmployees(data);
+
+        } catch (error) {
+
+            console.error("Failed to load employees", error);
+
         }
 
-    ];
+    }
 
     return (
 
@@ -49,7 +46,7 @@ function EmployeeList() {
                     <tr>
 
                         <th>ID</th>
-                        <th>Code</th>
+                        <th>Employee Code</th>
                         <th>Name</th>
                         <th>Department</th>
                         <th>Role</th>
@@ -62,19 +59,49 @@ function EmployeeList() {
 
                     {
 
-                        employees.map(employee=>(
+                        employees.length > 0 ? (
 
-                            <tr key={employee.id}>
+                            employees.map((employee) => (
 
-                                <td>{employee.id}</td>
-                                <td>{employee.code}</td>
-                                <td>{employee.name}</td>
-                                <td>{employee.department}</td>
-                                <td>{employee.role}</td>
+                                <tr key={employee.id}>
+
+                                    <td>{employee.id}</td>
+
+                                    <td>{employee.employeeCode}</td>
+
+                                    <td>
+
+                                        {employee.firstName} {employee.lastName}
+
+                                    </td>
+
+                                    <td>
+
+                                        {employee.department
+                                            ? employee.department.departmentName
+                                            : "-"}
+
+                                    </td>
+
+                                    <td>{employee.role}</td>
+
+                                </tr>
+
+                            ))
+
+                        ) : (
+
+                            <tr>
+
+                                <td colSpan="5">
+
+                                    No Employees Found
+
+                                </td>
 
                             </tr>
 
-                        ))
+                        )
 
                     }
 

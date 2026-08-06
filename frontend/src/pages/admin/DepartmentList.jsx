@@ -1,25 +1,32 @@
+import { useEffect, useState } from "react";
 import "./DepartmentList.css";
+import { getDepartments } from "../../services/departmentService";
 
-function DepartmentList(){
+function DepartmentList() {
 
-    const departments=[
+    const [departments, setDepartments] = useState([]);
 
-        {
-            id:1,
-            name:"Information Technology"
-        },
-        {
-            id:2,
-            name:"Human Resources"
-        },
-        {
-            id:3,
-            name:"Finance"
+    useEffect(() => {
+        loadDepartments();
+    }, []);
+
+    async function loadDepartments() {
+
+        try {
+
+            const data = await getDepartments();
+
+            setDepartments(data);
+
+        } catch (error) {
+
+            console.error("Failed to load departments", error);
+
         }
 
-    ];
+    }
 
-    return(
+    return (
 
         <div className="department-page">
 
@@ -35,20 +42,36 @@ function DepartmentList(){
 
                 {
 
-                    departments.map(department=>(
+                    departments.length > 0 ? (
 
-                        <div
-                            className="department-card"
-                            key={department.id}
-                        >
+                        departments.map((department) => (
 
-                            <h3>{department.name}</h3>
+                            <div
+                                className="department-card"
+                                key={department.id}
+                            >
 
-                            <p>Department ID : {department.id}</p>
+                                <h3>
 
-                        </div>
+                                    {department.departmentName}
 
-                    ))
+                                </h3>
+
+                                <p>
+
+                                    {department.description}
+
+                                </p>
+
+                            </div>
+
+                        ))
+
+                    ) : (
+
+                        <p>No Departments Found</p>
+
+                    )
 
                 }
 
