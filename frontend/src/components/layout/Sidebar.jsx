@@ -8,7 +8,7 @@ import {
     Settings,
     LogOut
 } from "lucide-react";
-
+import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import Logo from "./Logo";
 function Sidebar() {
@@ -52,24 +52,38 @@ function Sidebar() {
 
             <nav className="sidebar-menu">
 
-                {
+                <NavLink
+                    to="/dashboard"
+                    className="sidebar-item"
+                >
 
-                    menu.map((item) => (
+                    <LayoutDashboard size={20}/>
 
-                        <button
-                            key={item.title}
-                            className="sidebar-item"
-                        >
+                    <span>Dashboard</span>
 
-                            {item.icon}
+                </NavLink>
 
-                            <span>{item.title}</span>
+                <NavLink
+                    to="/dashboard/employees"
+                    className="sidebar-item"
+                >
 
-                        </button>
+                    <Users size={20}/>
 
-                    ))
+                    <span>Employees</span>
 
-                }
+                </NavLink>
+
+                <NavLink
+                    to="/dashboard/departments"
+                    className="sidebar-item"
+                >
+
+                    <Building2 size={20}/>
+
+                    <span>Departments</span>
+
+                </NavLink>
 
             </nav>
 

@@ -1,0 +1,50 @@
+.employee-page{
+
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+
+}
+
+.page-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+.page-header button{
+
+    background:var(--primary);
+    color:white;
+    padding:14px 22px;
+    border-radius:14px;
+
+}
+
+.employee-table{
+
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:25px;
+    box-shadow:var(--shadow);
+
+}
+
+.employee-table table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.employee-table th,
+.employee-table td{
+
+    text-align:left;
+    padding:16px;
+    border-bottom:1px solid var(--border);
+
+}
