@@ -32,6 +32,21 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public Department updateDepartment(Long id, Department department) {
+
+        Department existing = departmentRepository.findById(id).orElse(null);
+
+        if (existing == null) {
+            return null;
+        }
+
+        existing.setDepartmentName(department.getDepartmentName());
+        existing.setDescription(department.getDescription());
+
+        return departmentRepository.save(existing);
+    }
+
+    @Override
     public void deleteDepartment(Long id) {
         departmentRepository.deleteById(id);
     }
