@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/leaves")
+@CrossOrigin(origins = "http://localhost:5173")
 public class LeaveRequestController {
 
     private final LeaveRequestService leaveRequestService;
@@ -16,7 +17,7 @@ public class LeaveRequestController {
         this.leaveRequestService = leaveRequestService;
     }
 
-    @PostMapping
+    @PostMapping("/apply")
     public LeaveRequest applyLeave(@RequestBody LeaveRequest leaveRequest) {
         return leaveRequestService.applyLeave(leaveRequest);
     }
@@ -27,16 +28,26 @@ public class LeaveRequestController {
     }
 
     @GetMapping("/{id}")
-    public LeaveRequest getLeaveById(@PathVariable Long id) {
+    public LeaveRequest getLeave(@PathVariable Long id) {
         return leaveRequestService.getLeaveById(id);
     }
 
-    @PutMapping("/{id}")
-    public LeaveRequest updateLeaveStatus(
-            @PathVariable Long id,
-            @RequestBody LeaveRequest leaveRequest) {
+    @GetMapping("/employee/{employeeId}")
+    public List<LeaveRequest> getEmployeeLeaveHistory(@PathVariable Long employeeId) {
+        return leaveRequestService.getEmployeeLeaveHistory(employeeId);
+    }
 
-        return leaveRequestService.updateLeaveStatus(id, leaveRequest);
+    @PutMapping("/{id}/approve")
+    public LeaveRequest approveLeave(@PathVariable Long id) {
+        return leaveRequestService.approveLeave(id);
+    }
+
+    @PutMapping("/{id}/reject")
+    public LeaveRequest rejectLeave(
+            @PathVariable Long id,
+            @RequestParam String remarks) {
+
+        return leaveRequestService.rejectLeave(id, remarks);
     }
 
     @DeleteMapping("/{id}")
