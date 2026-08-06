@@ -23,9 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Department> getAllDepartments() {
-        return departments.stream()
-                .map(DepartmentMapper::toResponse)
-                .toList();
+        return departmentRepository.findAll();
     }
 
     @Override

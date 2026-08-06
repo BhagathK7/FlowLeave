@@ -28,15 +28,17 @@ public class Employee {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String designation;
 
+    @Column(nullable = false)
     private LocalDate joiningDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
 

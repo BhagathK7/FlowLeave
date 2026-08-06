@@ -1,15 +1,16 @@
 package com.flowleave.backend.service;
 
 import com.flowleave.backend.entity.Department;
+
 import java.util.List;
 
 public interface DepartmentService {
 
-    DepartmentResponse saveDepartment(DepartmentRequest request);
+    Department saveDepartment(Department department);
 
-    List<DepartmentResponse> getAllDepartments();
+    List<Department> getAllDepartments();
 
-    DepartmentResponse getDepartmentById(Long id);
+    Department getDepartmentById(Long id);
 
     void deleteDepartment(Long id);
 }
