@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface DepartmentService {
 
-    Department saveDepartment(Department department);
+    DepartmentResponse saveDepartment(DepartmentRequest request);
 
-    List<Department> getAllDepartments();
+    List<DepartmentResponse> getAllDepartments();
 
-    Department getDepartmentById(Long id);
+    DepartmentResponse getDepartmentById(Long id);
 
     void deleteDepartment(Long id);
 }
