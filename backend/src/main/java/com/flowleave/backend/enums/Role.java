@@ -1,7 +1,7 @@
 package com.flowleave.backend.enums;
 
 public enum Role {
-    EMPLOYEE,
+    ADMIN,
     MANAGER,
-    ADMIN
+    EMPLOYEE
 }

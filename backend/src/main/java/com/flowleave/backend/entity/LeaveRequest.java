@@ -38,7 +38,7 @@ public class LeaveRequest {
     private String managerRemarks;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     public LeaveRequest() {
