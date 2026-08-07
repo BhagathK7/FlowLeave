@@ -1,4 +1,5 @@
 import { LayoutDashboard, CalendarPlus, History, UserCircle } from "lucide-react";
+import { useState } from "react";
 
 import "./DashboardLayout.css";
 
@@ -21,15 +22,22 @@ const employeeLinks = [
 
 function EmployeeLayout() {
 
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
     return (
 
         <div className="dashboard">
 
-            <Sidebar basePath="/employee" links={employeeLinks} />
+            <Sidebar
+                basePath="/employee"
+                links={employeeLinks}
+                isOpen={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
+            />
 
             <main className="dashboard-content">
 
-                <Navbar />
+                <Navbar onMenuClick={() => setSidebarOpen(true)} />
 
                 <section className="page-content">
 

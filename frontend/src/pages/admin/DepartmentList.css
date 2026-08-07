@@ -1,7 +1,9 @@
 .department-page{
 
     display:flex;
+
     flex-direction:column;
+
     gap:25px;
 
 }
@@ -9,7 +11,9 @@
 .department-grid{
 
     display:grid;
+
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
     gap:20px;
 
 }
@@ -17,9 +21,13 @@
 .department-card{
 
     background:var(--surface);
+
     border:1px solid var(--border);
+
     border-radius:20px;
+
     padding:25px;
+
     box-shadow:var(--shadow);
 
 }
@@ -33,5 +41,16 @@
 .department-card p{
 
     color:var(--text-light);
+
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+
+    .department-grid{
+
+        grid-template-columns:1fr;
+
+    }
 
 }

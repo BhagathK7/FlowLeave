@@ -1,11 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { LogOut } from "lucide-react";
+import { LogOut, X } from "lucide-react";
 
 import "./Sidebar.css";
 import Logo from "./Logo";
 import { logout } from "../../utils/auth";
 
-function Sidebar({ basePath, links }) {
+function Sidebar({ basePath, links, isOpen, onClose }) {
 
     const navigate = useNavigate();
 
@@ -16,47 +16,71 @@ function Sidebar({ basePath, links }) {
 
     return (
 
-        <aside className="sidebar">
+        <>
 
-            <Logo />
+            <div
+                className={`sidebar-backdrop ${isOpen ? "visible" : ""}`}
+                onClick={onClose}
+            />
 
-            <nav className="sidebar-menu">
+            <aside className={`sidebar ${isOpen ? "open" : ""}`}>
 
-                {
+                <div className="sidebar-top">
 
-                    links.map((link) => (
+                    <Logo />
 
-                        <NavLink
-                            key={link.to}
-                            to={link.to === "" ? basePath : `${basePath}/${link.to}`}
-                            end={link.to === ""}
-                            className="sidebar-item"
-                        >
+                    <button
+                        className="sidebar-close"
+                        onClick={onClose}
+                        aria-label="Close menu"
+                    >
 
-                            {link.icon}
+                        <X size={22} />
 
-                            <span>{link.label}</span>
+                    </button>
 
-                        </NavLink>
+                </div>
 
-                    ))
+                <nav className="sidebar-menu">
 
-                }
+                    {
 
-            </nav>
+                        links.map((link) => (
 
-            <button
-                className="logout-btn"
-                onClick={handleLogout}
-            >
+                            <NavLink
+                                key={link.to}
+                                to={link.to === "" ? basePath : `${basePath}/${link.to}`}
+                                end={link.to === ""}
+                                className="sidebar-item"
+                                onClick={onClose}
+                            >
 
-                <LogOut size={20} />
+                                {link.icon}
 
-                <span>Logout</span>
+                                <span>{link.label}</span>
 
-            </button>
+                            </NavLink>
 
-        </aside>
+                        ))
+
+                    }
+
+                </nav>
+
+                <button
+                    className="logout-btn"
+                    onClick={handleLogout}
+                >
+
+                    <LogOut size={20} />
+
+                    <span>Logout</span>
+
+                </button>
+
+            </aside>
+
+        </>
 
     );
 

@@ -72,11 +72,15 @@
 
     box-shadow:var(--shadow);
 
+    overflow-x:auto;
+
 }
 
 table{
 
     width:100%;
+
+    min-width:520px;
 
     border-collapse:collapse;
 
@@ -94,6 +98,8 @@ th{
 
     border-bottom:1px solid var(--border);
 
+    white-space:nowrap;
+
 }
 
 td{
@@ -101,5 +107,34 @@ td{
     padding:18px 15px;
 
     border-bottom:1px solid var(--border);
+
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+
+    .dashboard-home h1{
+
+        font-size:1.6rem;
+
+    }
+
+    .stat-card{
+
+        padding:22px;
+
+    }
+
+    .stat-card h2{
+
+        font-size:1.8rem;
+
+    }
+
+    .table-card{
+
+        padding:18px;
+
+    }
 
 }

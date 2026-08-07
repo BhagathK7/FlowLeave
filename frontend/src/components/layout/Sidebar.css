@@ -1,6 +1,7 @@
 .sidebar{
 
     width:270px;
+    flex-shrink:0;
 
     background:var(--surface);
 
@@ -13,6 +14,50 @@
     justify-content:space-between;
 
     padding:30px 20px;
+
+}
+
+.sidebar-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:40px;
+
+}
+
+.sidebar-top .logo{
+
+    margin-bottom:0;
+
+}
+
+.sidebar-close{
+
+    display:none;
+
+    width:38px;
+
+    height:38px;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:var(--background);
+
+    color:var(--text);
+
+}
+
+.sidebar-backdrop{
+
+    display:none;
 
 }
 
@@ -50,6 +95,8 @@
 
     font-weight:bold;
 
+    flex-shrink:0;
+
 }
 
 .logo h2{
@@ -73,6 +120,10 @@
     flex-direction:column;
 
     gap:10px;
+
+    flex:1;
+
+    overflow-y:auto;
 
 }
 
@@ -121,5 +172,107 @@
     color:#d9534f;
 
     border-radius:18px;
+
+}
+
+/* ===== Responsive: tablet - icon-only rail ===== */
+@media(max-width:1024px) and (min-width:769px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:24px 12px;
+
+    }
+
+    .sidebar-top{
+
+        justify-content:center;
+
+    }
+
+    .logo span,
+    .logo h2,
+    .sidebar-item span,
+    .logout-btn span{
+
+        display:none;
+
+    }
+
+    .sidebar-item,
+    .logout-btn{
+
+        justify-content:center;
+
+    }
+
+}
+
+/* ===== Responsive: mobile - slide-in overlay ===== */
+@media(max-width:768px){
+
+    .sidebar{
+
+        position:fixed;
+
+        top:0;
+
+        left:0;
+
+        height:100vh;
+
+        width:280px;
+
+        max-width:82vw;
+
+        z-index:1000;
+
+        transform:translateX(-100%);
+
+        transition:transform .3s ease;
+
+        box-shadow:var(--shadow);
+
+    }
+
+    .sidebar.open{
+
+        transform:translateX(0);
+
+    }
+
+    .sidebar-close{
+
+        display:flex;
+
+    }
+
+    .sidebar-backdrop{
+
+        display:block;
+
+        position:fixed;
+
+        inset:0;
+
+        background:rgba(0,0,0,0);
+
+        pointer-events:none;
+
+        transition:background .3s ease;
+
+        z-index:999;
+
+    }
+
+    .sidebar-backdrop.visible{
+
+        background:rgba(0,0,0,.35);
+
+        pointer-events:auto;
+
+    }
 
 }

@@ -40,6 +40,8 @@
 
     font-family:inherit;
 
+    width:100%;
+
 }
 
 .apply-leave textarea{
@@ -59,5 +61,22 @@
     color:white;
 
     border-radius:14px;
+
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+
+    .apply-leave{
+
+        padding:22px;
+
+    }
+
+    .apply-leave h2{
+
+        font-size:1.4rem;
+
+    }
 
 }

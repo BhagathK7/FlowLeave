@@ -1,4 +1,5 @@
 import { LayoutDashboard, Users, Building2 } from "lucide-react";
+import { useState } from "react";
 
 import "./DashboardLayout.css";
 
@@ -21,15 +22,22 @@ const adminLinks = [
 
 function DashboardLayout() {
 
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
     return (
 
         <div className="dashboard">
 
-            <Sidebar basePath="/admin" links={adminLinks} />
+            <Sidebar
+                basePath="/admin"
+                links={adminLinks}
+                isOpen={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
+            />
 
             <main className="dashboard-content">
 
-                <Navbar />
+                <Navbar onMenuClick={() => setSidebarOpen(true)} />
 
                 <section className="page-content">
 

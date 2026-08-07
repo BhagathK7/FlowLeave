@@ -36,6 +36,8 @@
 
     background:white;
 
+    width:100%;
+
 }
 
 .add-department button{
@@ -47,5 +49,22 @@
     color:white;
 
     border-radius:14px;
+
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+
+    .add-department{
+
+        padding:22px;
+
+    }
+
+    .add-department h2{
+
+        font-size:1.4rem;
+
+    }
 
 }
