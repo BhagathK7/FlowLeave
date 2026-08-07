@@ -34,7 +34,7 @@ function AddDepartment() {
 
             alert("Department Added Successfully");
 
-            navigate("/dashboard/departments");
+            navigate("/admin/departments");
 
         } catch (error) {
 

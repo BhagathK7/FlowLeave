@@ -9,23 +9,34 @@ function EmployeeList() {
 
     const [employees, setEmployees] = useState([]);
 
-    async function loadEmployees() {
+    useEffect(() => {
 
-        try {
+        let active = true;
 
-            const data = await getEmployees();
-            setEmployees(data);
+        async function loadEmployees() {
 
-        } catch (error) {
+            try {
 
-            console.error("Failed to load employees", error);
+                const data = await getEmployees();
+
+                if (active) {
+                    setEmployees(data);
+                }
+
+            } catch (error) {
+
+                console.error("Failed to load employees", error);
+
+            }
 
         }
 
-    }
-
-    useEffect(() => {
         loadEmployees();
+
+        return () => {
+            active = false;
+        };
+
     }, []);
 
     return (
@@ -36,7 +47,7 @@ function EmployeeList() {
 
                 <h1>Employees</h1>
 
-                <button onClick={() => navigate("/dashboard/employees/new")}>
+                <button onClick={() => navigate("/admin/employees/new")}>
                     Add Employee
                 </button>
 

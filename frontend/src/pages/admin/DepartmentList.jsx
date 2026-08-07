@@ -9,24 +9,34 @@ function DepartmentList() {
 
     const [departments, setDepartments] = useState([]);
 
-    async function loadDepartments() {
+    useEffect(() => {
 
-        try {
+        let active = true;
 
-            const data = await getDepartments();
+        async function loadDepartments() {
 
-            setDepartments(data);
+            try {
 
-        } catch (error) {
+                const data = await getDepartments();
 
-            console.error("Failed to load departments", error);
+                if (active) {
+                    setDepartments(data);
+                }
+
+            } catch (error) {
+
+                console.error("Failed to load departments", error);
+
+            }
 
         }
 
-    }
-
-    useEffect(() => {
         loadDepartments();
+
+        return () => {
+            active = false;
+        };
+
     }, []);
 
     return (
@@ -37,7 +47,7 @@ function DepartmentList() {
 
                 <h1>Departments</h1>
 
-                <button onClick={() => navigate("/dashboard/departments/new")}>
+                <button onClick={() => navigate("/admin/departments/new")}>
                     Add Department
                 </button>
 

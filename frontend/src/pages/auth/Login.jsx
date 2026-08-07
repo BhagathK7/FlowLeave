@@ -49,7 +49,15 @@ function Login() {
                     JSON.stringify(response.data)
                 );
 
-                navigate("/dashboard");
+                const role = response.data.role;
+
+                if (role === "ADMIN") {
+                    navigate("/admin");
+                } else if (role === "MANAGER") {
+                    navigate("/manager");
+                } else {
+                    navigate("/employee");
+                }
 
             } else {
 

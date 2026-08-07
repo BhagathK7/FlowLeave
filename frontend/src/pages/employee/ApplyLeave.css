@@ -1,0 +1,63 @@
+.apply-leave{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.apply-leave form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    margin-top:25px;
+
+    max-width:480px;
+
+}
+
+.apply-leave input,
+.apply-leave select,
+.apply-leave textarea{
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:white;
+
+    font-family:inherit;
+
+}
+
+.apply-leave textarea{
+
+    min-height:110px;
+
+    resize:vertical;
+
+}
+
+.apply-leave button{
+
+    padding:16px;
+
+    background:var(--primary);
+
+    color:white;
+
+    border-radius:14px;
+
+}

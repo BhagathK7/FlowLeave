@@ -1,14 +1,18 @@
-import {
-    LayoutDashboard,
-    Users,
-    Building2,
-    LogOut
-} from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { LogOut } from "lucide-react";
+
 import "./Sidebar.css";
 import Logo from "./Logo";
+import { logout } from "../../utils/auth";
 
-function Sidebar() {
+function Sidebar({ basePath, links }) {
+
+    const navigate = useNavigate();
+
+    function handleLogout() {
+        logout();
+        navigate("/login");
+    }
 
     return (
 
@@ -18,43 +22,33 @@ function Sidebar() {
 
             <nav className="sidebar-menu">
 
-                <NavLink
-                    to="/dashboard"
-                    end
-                    className="sidebar-item"
-                >
+                {
 
-                    <LayoutDashboard size={20}/>
+                    links.map((link) => (
 
-                    <span>Dashboard</span>
+                        <NavLink
+                            key={link.to}
+                            to={link.to === "" ? basePath : `${basePath}/${link.to}`}
+                            end={link.to === ""}
+                            className="sidebar-item"
+                        >
 
-                </NavLink>
+                            {link.icon}
 
-                <NavLink
-                    to="/dashboard/employees"
-                    className="sidebar-item"
-                >
+                            <span>{link.label}</span>
 
-                    <Users size={20}/>
+                        </NavLink>
 
-                    <span>Employees</span>
+                    ))
 
-                </NavLink>
-
-                <NavLink
-                    to="/dashboard/departments"
-                    className="sidebar-item"
-                >
-
-                    <Building2 size={20}/>
-
-                    <span>Departments</span>
-
-                </NavLink>
+                }
 
             </nav>
 
-            <button className="logout-btn">
+            <button
+                className="logout-btn"
+                onClick={handleLogout}
+            >
 
                 <LogOut size={20} />
 

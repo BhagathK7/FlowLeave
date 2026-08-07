@@ -50,6 +50,11 @@ public class LeaveRequestController {
         return leaveRequestService.rejectLeave(id, remarks);
     }
 
+    @PutMapping("/{id}/cancel")
+    public LeaveRequest cancelLeave(@PathVariable Long id) {
+        return leaveRequestService.cancelLeave(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteLeave(@PathVariable Long id) {
         leaveRequestService.deleteLeave(id);

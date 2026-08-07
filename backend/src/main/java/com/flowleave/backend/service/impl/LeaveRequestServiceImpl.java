@@ -67,6 +67,20 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     }
 
     @Override
+    public LeaveRequest cancelLeave(Long id) {
+
+        LeaveRequest leave = leaveRequestRepository.findById(id).orElse(null);
+
+        if (leave == null) {
+            return null;
+        }
+
+        leave.setStatus(LeaveStatus.CANCELLED);
+
+        return leaveRequestRepository.save(leave);
+    }
+
+    @Override
     public void deleteLeave(Long id) {
         leaveRequestRepository.deleteById(id);
     }

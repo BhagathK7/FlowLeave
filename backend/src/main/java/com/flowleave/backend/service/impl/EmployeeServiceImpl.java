@@ -1,9 +1,12 @@
 package com.flowleave.backend.service.impl;
 
 import com.flowleave.backend.entity.Employee;
+import com.flowleave.backend.entity.LeaveBalance;
 import com.flowleave.backend.repository.EmployeeRepository;
+import com.flowleave.backend.repository.LeaveBalanceRepository;
 import com.flowleave.backend.service.EmployeeService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,14 +14,28 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final LeaveBalanceRepository leaveBalanceRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(
+            EmployeeRepository employeeRepository,
+            LeaveBalanceRepository leaveBalanceRepository) {
+
         this.employeeRepository = employeeRepository;
+        this.leaveBalanceRepository = leaveBalanceRepository;
     }
 
     @Override
+    @Transactional
     public Employee saveEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+
+        Employee saved = employeeRepository.save(employee);
+
+        LeaveBalance balance = new LeaveBalance();
+        balance.setEmployee(saved);
+
+        leaveBalanceRepository.save(balance);
+
+        return saved;
     }
 
     @Override

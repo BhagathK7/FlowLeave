@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import "./Dashboard.css";
-import { getAdminDashboard } from "../../services/dashboardService";
+import { getCurrentUser } from "../../utils/auth";
+import { getLeaveBalance } from "../../services/leaveBalanceService";
+import { getEmployeeLeaveHistory } from "../../services/leaveService";
 
 function Dashboard() {
 
-    const [stats, setStats] = useState({
-        employees: 0,
-        departments: 0,
-        pendingLeaves: 0,
-        approvedLeaves: 0
-    });
+    const user = getCurrentUser();
 
+    const [balance, setBalance] = useState(null);
     const [recentLeaves, setRecentLeaves] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -22,24 +20,21 @@ function Dashboard() {
 
             try {
 
-                const data = await getAdminDashboard();
+                const [balanceData, historyData] = await Promise.all([
+                    getLeaveBalance(user.id),
+                    getEmployeeLeaveHistory(user.id)
+                ]);
 
                 if (!active) {
                     return;
                 }
 
-                setStats({
-                    employees: data.employees,
-                    departments: data.departments,
-                    pendingLeaves: data.pendingLeaves,
-                    approvedLeaves: data.approvedLeaves
-                });
-
-                setRecentLeaves(data.recentLeaves || []);
+                setBalance(balanceData);
+                setRecentLeaves(historyData.slice(0, 5));
 
             } catch (error) {
 
-                console.error("Failed to load dashboard", error);
+                console.error("Failed to load employee dashboard", error);
 
             } finally {
 
@@ -60,19 +55,18 @@ function Dashboard() {
     }, []);
 
     const cards = [
-        { title: "Employees", value: stats.employees },
-        { title: "Departments", value: stats.departments },
-        { title: "Pending Leaves", value: stats.pendingLeaves },
-        { title: "Approved Leaves", value: stats.approvedLeaves }
+        { title: "Casual Leave", value: balance ? balance.casualLeave : "-" },
+        { title: "Sick Leave", value: balance ? balance.sickLeave : "-" },
+        { title: "Earned Leave", value: balance ? balance.earnedLeave : "-" }
     ];
 
     return (
 
         <div className="dashboard-home">
 
-            <h1>Dashboard</h1>
+            <h1>Welcome, {user ? user.firstName : "Employee"}</h1>
 
-            <p>Welcome back to FlowLeave.</p>
+            <p>Here is your leave overview.</p>
 
             <div className="stats-grid">
 
@@ -104,8 +98,9 @@ function Dashboard() {
 
                     <tr>
 
-                        <th>Employee</th>
-                        <th>Leave</th>
+                        <th>Leave Type</th>
+                        <th>From</th>
+                        <th>To</th>
                         <th>Status</th>
 
                     </tr>
@@ -118,15 +113,17 @@ function Dashboard() {
 
                         recentLeaves.length > 0 ? (
 
-                            recentLeaves.map((item, index) => (
+                            recentLeaves.map((leave) => (
 
-                                <tr key={index}>
+                                <tr key={leave.id}>
 
-                                    <td>{item.employee}</td>
+                                    <td>{leave.leaveType}</td>
 
-                                    <td>{item.type}</td>
+                                    <td>{leave.startDate}</td>
 
-                                    <td>{item.status}</td>
+                                    <td>{leave.endDate}</td>
+
+                                    <td>{leave.status}</td>
 
                                 </tr>
 
@@ -136,8 +133,8 @@ function Dashboard() {
 
                             <tr>
 
-                                <td colSpan="3">
-                                    {loading ? "Loading..." : "No Recent Leave Requests"}
+                                <td colSpan="4">
+                                    {loading ? "Loading..." : "No Leave Requests Found"}
                                 </td>
 
                             </tr>

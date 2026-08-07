@@ -1,12 +1,15 @@
-import {Routes,Route,Navigate} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "../pages/auth/Login";
 
 import DashboardLayout from "../layouts/DashboardLayout";
+import EmployeeLayout from "../layouts/EmployeeLayout";
 
-function AppRoutes(){
+import ProtectedRoute from "./ProtectedRoute";
 
-    return(
+function AppRoutes() {
+
+    return (
 
         <Routes>
 
@@ -21,8 +24,26 @@ function AppRoutes(){
             />
 
             <Route
-                path="/dashboard/*"
-                element={<DashboardLayout />}
+                path="/admin/*"
+                element={
+                    <ProtectedRoute allowedRole="ADMIN">
+                        <DashboardLayout />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/employee/*"
+                element={
+                    <ProtectedRoute allowedRole="EMPLOYEE">
+                        <EmployeeLayout />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="*"
+                element={<Navigate to="/login" replace />}
             />
 
         </Routes>

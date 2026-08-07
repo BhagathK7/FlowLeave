@@ -16,6 +16,8 @@ public interface LeaveRequestService {
 
     LeaveRequest rejectLeave(Long id, String remarks);
 
+    LeaveRequest cancelLeave(Long id);
+
     void deleteLeave(Long id);
 
     List<LeaveRequest> getEmployeeLeaveHistory(Long employeeId);

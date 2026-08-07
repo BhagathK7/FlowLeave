@@ -1,0 +1,72 @@
+.history-page{
+
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+
+}
+
+.history-table{
+
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:25px;
+    box-shadow:var(--shadow);
+
+}
+
+.history-table table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.history-table th,
+.history-table td{
+
+    text-align:left;
+    padding:16px;
+    border-bottom:1px solid var(--border);
+
+}
+
+.status-badge{
+
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+
+}
+
+.status-pending{
+    background:rgba(216,179,106,.18);
+    color:var(--warning);
+}
+
+.status-approved{
+    background:rgba(168,198,134,.2);
+    color:var(--success);
+}
+
+.status-rejected{
+    background:rgba(178,110,99,.18);
+    color:var(--error);
+}
+
+.status-cancelled{
+    background:var(--secondary);
+    color:var(--text-light);
+}
+
+.cancel-btn{
+
+    background:var(--error);
+    color:white;
+    padding:8px 16px;
+    border-radius:10px;
+    font-size:13px;
+
+}
