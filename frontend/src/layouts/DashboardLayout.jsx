@@ -8,6 +8,8 @@ import Navbar from "../components/layout/Navbar";
 import Dashboard from "../pages/admin/Dashboard";
 import EmployeeList from "../pages/admin/EmployeeList";
 import DepartmentList from "../pages/admin/DepartmentList";
+import AddEmployee from "../pages/admin/AddEmployee";
+import AddDepartment from "../pages/admin/AddDepartment";
 
 function DashboardLayout() {
 
@@ -36,8 +38,18 @@ function DashboardLayout() {
                         />
 
                         <Route
+                            path="employees/new"
+                            element={<AddEmployee />}
+                        />
+
+                        <Route
                             path="departments"
                             element={<DepartmentList />}
+                        />
+
+                        <Route
+                            path="departments/new"
+                            element={<AddDepartment />}
                         />
 
                     </Routes>

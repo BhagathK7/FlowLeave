@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./EmployeeList.css";
 import { getEmployees } from "../../services/employeeService";
 
 function EmployeeList() {
 
-    const [employees, setEmployees] = useState([]);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        loadEmployees();
-    }, []);
+    const [employees, setEmployees] = useState([]);
 
     async function loadEmployees() {
 
@@ -25,6 +24,10 @@ function EmployeeList() {
 
     }
 
+    useEffect(() => {
+        loadEmployees();
+    }, []);
+
     return (
 
         <div className="employee-page">
@@ -33,7 +36,9 @@ function EmployeeList() {
 
                 <h1>Employees</h1>
 
-                <button>Add Employee</button>
+                <button onClick={() => navigate("/dashboard/employees/new")}>
+                    Add Employee
+                </button>
 
             </div>
 

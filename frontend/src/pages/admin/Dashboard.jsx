@@ -1,48 +1,55 @@
+import { useEffect, useState } from "react";
 import "./Dashboard.css";
+import { getAdminDashboard } from "../../services/dashboardService";
 
 function Dashboard() {
 
+    const [stats, setStats] = useState({
+        employees: 0,
+        departments: 0,
+        pendingLeaves: 0,
+        approvedLeaves: 0
+    });
+
+    const [recentLeaves, setRecentLeaves] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        loadDashboard();
+    }, []);
+
+    async function loadDashboard() {
+
+        try {
+
+            const data = await getAdminDashboard();
+
+            setStats({
+                employees: data.employees,
+                departments: data.departments,
+                pendingLeaves: data.pendingLeaves,
+                approvedLeaves: data.approvedLeaves
+            });
+
+            setRecentLeaves(data.recentLeaves || []);
+
+        } catch (error) {
+
+            console.error("Failed to load dashboard", error);
+
+        } finally {
+
+            setLoading(false);
+
+        }
+
+    }
+
     const cards = [
-
-        {
-            title: "Employees",
-            value: 152
-        },
-        {
-            title: "Departments",
-            value: 8
-        },
-        {
-            title: "Pending Leaves",
-            value: 12
-        },
-        {
-            title: "Approved Leaves",
-            value: 96
-        }
-
-    ];
-
-    const requests = [
-
-        {
-            employee: "John Carter",
-            type: "Casual Leave",
-            status: "Pending"
-        },
-
-        {
-            employee: "Emma Watson",
-            type: "Sick Leave",
-            status: "Approved"
-        },
-
-        {
-            employee: "David Miller",
-            type: "Earned Leave",
-            status: "Pending"
-        }
-
+        { title: "Employees", value: stats.employees },
+        { title: "Departments", value: stats.departments },
+        { title: "Pending Leaves", value: stats.pendingLeaves },
+        { title: "Approved Leaves", value: stats.approvedLeaves }
     ];
 
     return (
@@ -57,16 +64,13 @@ function Dashboard() {
 
                 {
 
-                    cards.map((card)=>(
+                    cards.map((card) => (
 
-                        <div
-                            key={card.title}
-                            className="stat-card"
-                        >
+                        <div key={card.title} className="stat-card">
 
                             <h3>{card.title}</h3>
 
-                            <h2>{card.value}</h2>
+                            <h2>{loading ? "-" : card.value}</h2>
 
                         </div>
 
@@ -87,9 +91,7 @@ function Dashboard() {
                     <tr>
 
                         <th>Employee</th>
-
                         <th>Leave</th>
-
                         <th>Status</th>
 
                     </tr>
@@ -100,19 +102,33 @@ function Dashboard() {
 
                     {
 
-                        requests.map((item,index)=>(
+                        recentLeaves.length > 0 ? (
 
-                            <tr key={index}>
+                            recentLeaves.map((item, index) => (
 
-                                <td>{item.employee}</td>
+                                <tr key={index}>
 
-                                <td>{item.type}</td>
+                                    <td>{item.employee}</td>
 
-                                <td>{item.status}</td>
+                                    <td>{item.type}</td>
+
+                                    <td>{item.status}</td>
+
+                                </tr>
+
+                            ))
+
+                        ) : (
+
+                            <tr>
+
+                                <td colSpan="3">
+                                    {loading ? "Loading..." : "No Recent Leave Requests"}
+                                </td>
 
                             </tr>
 
-                        ))
+                        )
 
                     }
 

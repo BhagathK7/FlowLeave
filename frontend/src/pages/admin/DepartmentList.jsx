@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./DepartmentList.css";
 import { getDepartments } from "../../services/departmentService";
 
 function DepartmentList() {
 
-    const [departments, setDepartments] = useState([]);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        loadDepartments();
-    }, []);
+    const [departments, setDepartments] = useState([]);
 
     async function loadDepartments() {
 
@@ -26,6 +25,10 @@ function DepartmentList() {
 
     }
 
+    useEffect(() => {
+        loadDepartments();
+    }, []);
+
     return (
 
         <div className="department-page">
@@ -34,7 +37,9 @@ function DepartmentList() {
 
                 <h1>Departments</h1>
 
-                <button>Add Department</button>
+                <button onClick={() => navigate("/dashboard/departments/new")}>
+                    Add Department
+                </button>
 
             </div>
 
