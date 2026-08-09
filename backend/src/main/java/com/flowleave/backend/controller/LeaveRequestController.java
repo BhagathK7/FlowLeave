@@ -1,7 +1,9 @@
 package com.flowleave.backend.controller;
 
 import com.flowleave.backend.entity.LeaveRequest;
+import com.flowleave.backend.enums.LeaveStatus;
 import com.flowleave.backend.service.LeaveRequestService;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +25,15 @@ public class LeaveRequestController {
     }
 
     @GetMapping
+    @Transactional(readOnly = true)
     public List<LeaveRequest> getAllLeaves() {
         return leaveRequestService.getAllLeaves();
+    }
+
+    @GetMapping("/status/{status}")
+    @Transactional(readOnly = true)
+    public List<LeaveRequest> getLeavesByStatus(@PathVariable LeaveStatus status) {
+        return leaveRequestService.getLeavesByStatus(status);
     }
 
     @GetMapping("/{id}")
@@ -33,6 +42,7 @@ public class LeaveRequestController {
     }
 
     @GetMapping("/employee/{employeeId}")
+    @Transactional(readOnly = true)
     public List<LeaveRequest> getEmployeeLeaveHistory(@PathVariable Long employeeId) {
         return leaveRequestService.getEmployeeLeaveHistory(employeeId);
     }

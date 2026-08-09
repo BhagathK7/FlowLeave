@@ -33,6 +33,11 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     }
 
     @Override
+    public List<LeaveRequest> getLeavesByStatus(LeaveStatus status) {
+        return leaveRequestRepository.findByStatus(status);
+    }
+
+    @Override
     public LeaveRequest getLeaveById(Long id) {
         return leaveRequestRepository.findById(id).orElse(null);
     }

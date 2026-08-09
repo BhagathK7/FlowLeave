@@ -1,0 +1,105 @@
+.pending-page{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+.pending-table{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+    overflow-x:auto;
+
+}
+
+.pending-table table{
+
+    width:100%;
+
+    min-width:760px;
+
+    border-collapse:collapse;
+
+}
+
+.pending-table th,
+.pending-table td{
+
+    text-align:left;
+
+    padding:16px;
+
+    border-bottom:1px solid var(--border);
+
+    white-space:nowrap;
+
+}
+
+.action-cell{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.approve-btn{
+
+    background:var(--success);
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    white-space:nowrap;
+
+}
+
+.reject-btn{
+
+    background:var(--error);
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    white-space:nowrap;
+
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+
+    .pending-page h1{
+
+        font-size:1.6rem;
+
+    }
+
+    .pending-table{
+
+        padding:16px;
+
+    }
+
+}

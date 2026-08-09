@@ -4,6 +4,7 @@ import Login from "../pages/auth/Login";
 
 import DashboardLayout from "../layouts/DashboardLayout";
 import EmployeeLayout from "../layouts/EmployeeLayout";
+import ManagerLayout from "../layouts/ManagerLayout";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -37,6 +38,15 @@ function AppRoutes() {
                 element={
                     <ProtectedRoute allowedRole="EMPLOYEE">
                         <EmployeeLayout />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/manager/*"
+                element={
+                    <ProtectedRoute allowedRole="MANAGER">
+                        <ManagerLayout />
                     </ProtectedRoute>
                 }
             />

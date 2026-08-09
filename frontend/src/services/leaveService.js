@@ -25,6 +25,11 @@ export const getAllLeaves = async () => {
     return response.data;
 };
 
+export const getLeavesByStatus = async (status) => {
+    const response = await api.get(`/leaves/status/${status}`);
+    return response.data;
+};
+
 export const approveLeave = async (id) => {
     const response = await api.put(`/leaves/${id}/approve`);
     return response.data;
