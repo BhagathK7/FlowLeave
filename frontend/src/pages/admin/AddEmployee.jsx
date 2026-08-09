@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { createEmployee } from "../../services/employeeService";
+import { getDepartments } from "../../services/departmentService";
 import "./AddEmployee.css";
 
 function AddEmployee() {
+
+    const navigate = useNavigate();
+
+    const [departments, setDepartments] = useState([]);
 
     const [employee, setEmployee] = useState({
 
@@ -13,9 +19,40 @@ function AddEmployee() {
         password: "",
         designation: "",
         joiningDate: "",
-        role: "EMPLOYEE"
+        role: "EMPLOYEE",
+        departmentId: ""
 
     });
+
+    useEffect(() => {
+
+        let active = true;
+
+        async function loadDepartments() {
+
+            try {
+
+                const data = await getDepartments();
+
+                if (active) {
+                    setDepartments(data);
+                }
+
+            } catch (error) {
+
+                console.error("Failed to load departments", error);
+
+            }
+
+        }
+
+        loadDepartments();
+
+        return () => {
+            active = false;
+        };
+
+    }, []);
 
     function handleChange(e) {
 
@@ -35,11 +72,27 @@ function AddEmployee() {
 
         try {
 
-            await createEmployee(employee);
+            const payload = {
+
+                employeeCode: employee.employeeCode,
+                firstName: employee.firstName,
+                lastName: employee.lastName,
+                email: employee.email,
+                password: employee.password,
+                designation: employee.designation,
+                joiningDate: employee.joiningDate,
+                role: employee.role,
+                department: employee.departmentId
+                    ? { id: Number(employee.departmentId) }
+                    : null
+
+            };
+
+            await createEmployee(payload);
 
             alert("Employee Added Successfully");
 
-            window.location.reload();
+            navigate("/admin/employees");
 
         } catch (error) {
 
@@ -109,7 +162,33 @@ function AddEmployee() {
                 />
 
                 <select
+                    name="departmentId"
+                    value={employee.departmentId}
+                    onChange={handleChange}
+                >
+
+                    <option value="">Select Department</option>
+
+                    {
+
+                        departments.map((department) => (
+
+                            <option
+                                key={department.id}
+                                value={department.id}
+                            >
+                                {department.departmentName}
+                            </option>
+
+                        ))
+
+                    }
+
+                </select>
+
+                <select
                     name="role"
+                    value={employee.role}
                     onChange={handleChange}
                 >
 

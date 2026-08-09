@@ -1,5 +1,6 @@
 package com.flowleave.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.flowleave.backend.enums.Role;
 import jakarta.persistence.*;
 
@@ -26,6 +27,7 @@ public class Employee {
     private String email;
 
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(nullable = false)

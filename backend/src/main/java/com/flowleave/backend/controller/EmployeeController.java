@@ -2,6 +2,7 @@ package com.flowleave.backend.controller;
 
 import com.flowleave.backend.entity.Employee;
 import com.flowleave.backend.service.EmployeeService;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,11 +24,13 @@ public class EmployeeController {
     }
 
     @GetMapping
+    @Transactional(readOnly = true)
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
     @GetMapping("/{id}")
+    @Transactional(readOnly = true)
     public Employee getEmployee(@PathVariable Long id) {
         return employeeService.getEmployeeById(id);
     }
