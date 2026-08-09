@@ -1,5 +1,4 @@
-```java
-        package com.flowleave.backend;
+package com.flowleave.backend;
 
 import com.flowleave.backend.entity.Department;
 import com.flowleave.backend.entity.Employee;
@@ -65,4 +64,3 @@ public class DataInitializer implements CommandLineRunner {
         }
     }
 }
-```
