@@ -9,10 +9,8 @@ function Login() {
     const navigate = useNavigate();
 
     const [form, setForm] = useState({
-
         email: "",
         password: ""
-
     });
 
     const [loading, setLoading] = useState(false);
@@ -20,11 +18,8 @@ function Login() {
     const handleChange = (e) => {
 
         setForm({
-
             ...form,
-
             [e.target.name]: e.target.value
-
         });
 
     };
@@ -38,7 +33,7 @@ function Login() {
             setLoading(true);
 
             const response = await axios.post(
-                "http://localhost:8080/api/auth/login",
+                "https://flowleave-backend-vgiz.onrender.com/api/auth/login",
                 form
             );
 
@@ -65,8 +60,9 @@ function Login() {
 
             }
 
-        } catch {
+        } catch (error) {
 
+            console.error("Login failed:", error);
             alert("Login Failed");
 
         } finally {
@@ -87,13 +83,13 @@ function Login() {
 
                     <h1>FlowLeave</h1>
 
-                    <h2>Smart Leave Management for Modern Workplaces</h2>
+                    <h2>
+                        Smart Leave Management for Modern Workplaces
+                    </h2>
 
                     <p>
-
                         A premium enterprise leave management platform
                         built using Spring Boot and React.
-
                     </p>
 
                 </div>
@@ -112,49 +108,29 @@ function Login() {
                     <p>Sign in to continue</p>
 
                     <input
-
                         type="email"
-
                         name="email"
-
                         placeholder="Email"
-
                         value={form.email}
-
                         onChange={handleChange}
-
                         required
-
                     />
 
                     <input
-
                         type="password"
-
                         name="password"
-
                         placeholder="Password"
-
                         value={form.password}
-
                         onChange={handleChange}
-
                         required
-
                     />
 
-                    <button
-                        type="submit"
-                    >
+                    <button type="submit">
 
                         {
-
                             loading
-
                                 ? "Signing In..."
-
                                 : "Login"
-
                         }
 
                     </button>
@@ -170,3 +146,4 @@ function Login() {
 }
 
 export default Login;
+
