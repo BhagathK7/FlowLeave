@@ -48,11 +48,11 @@ Instead of managing leave requests through spreadsheets, emails, or disconnected
               │                │                │
               ▼                ▼                ▼
         ┌───────────┐    ┌───────────┐    ┌───────────┐
-        │ EMPLOYEE  │    │  MANAGER  │    │   ADMIN   │
+        │ EMPLOYEE    │    │  MANAGER    │    │   ADMIN     │
         ├───────────┤    ├───────────┤    ├───────────┤
-        │ Apply     │    │ Review    │    │ Employees │
-        │ Track     │    │ Approve   │    │ Depts     │
-        │ Balance   │    │ Reject    │    │ Dashboard │
+        │ Apply       │    │ Review      │    │ Employees   │
+        │ Track       │    │ Approve     │    │ Depts       │
+        │ Balance     │    │ Reject      │    │ Dashboard   │
         └───────────┘    └───────────┘    └───────────┘
 ```
 
