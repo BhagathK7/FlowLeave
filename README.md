@@ -40,13 +40,13 @@ Instead of managing leave requests through spreadsheets, emails, or disconnected
 
 ```text
                     ┌─────────────────────┐
-                    │      FLOWLEAVE      │
-                    │  Leave Management   │
+                    │      FLOWLEAVE          │
+                    │  Leave Management       │
                     └──────────┬──────────┘
-                               │
+                                 │
               ┌────────────────┼────────────────┐
-              │                │                │
-              ▼                ▼                ▼
+              │                   │                   │
+              ▼                  ▼                   ▼
         ┌───────────┐    ┌───────────┐    ┌───────────┐
         │ EMPLOYEE    │    │  MANAGER    │    │   ADMIN     │
         ├───────────┤    ├───────────┤    ├───────────┤
