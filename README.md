@@ -34,7 +34,7 @@ A modern, role-based leave management platform for organizations to manage emplo
 
 Instead of managing leave requests through spreadsheets, emails, or disconnected systems, FlowLeave provides a centralized workspace where:
 
-**Employees** apply for leave and track their balances.
+**Employees** apply for leave and track their balances. 
 **Managers** review, approve, or reject requests.
 **Administrators** manage employees, departments, and organization-wide leave activity.
 
