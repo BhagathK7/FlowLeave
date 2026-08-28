@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌿 FlowLeave 
+# 🌿 FlowLeave  
 
 ### Leave management, without the paperwork. 
 
