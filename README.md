@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🌿 FlowLeave  
-
+ 
 ### Leave management, without the paperwork. 
 
 A modern, role-based leave management platform for organizations to manage employees, departments, leave balances, approvals, and requests — all from one place.
