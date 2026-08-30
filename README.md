@@ -57,7 +57,7 @@ Instead of managing leave requests through spreadsheets, emails, or disconnected
 ```
 
 ---
-
+ 
 # ✨ Why FlowLeave?
 
 Traditional leave management often looks like:
