@@ -8,7 +8,7 @@ A modern, role-based leave management platform for organizations to manage emplo
 
 <br/>  
 
-<a href="YOUR_FRONTEND_URL">
+<a href="YOUR_FRONTEND_URL"> 
   <img src="https://img.shields.io/badge/Live%20Application-Visit%20FlowLeave-0f766e?style=for-the-badge&logo=render&logoColor=white" alt="Live Application"/>
 </a>
 <a href="https://github.com/BhagathK7/FlowLeave">
