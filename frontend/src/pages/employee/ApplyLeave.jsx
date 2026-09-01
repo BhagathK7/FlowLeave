@@ -11,7 +11,7 @@ function ApplyLeave() {
 
     const [form, setForm] = useState({
         leaveType: "CASUAL",
-        startDate: "",
+        startDate: "", 
         endDate: "",
         reason: ""
     });
