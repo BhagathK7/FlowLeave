@@ -26,7 +26,7 @@ A modern, role-based leave management platform for organizations to manage emplo
 
 </div>
 
----
+--- 
  
 ## ✦ Overview
 
