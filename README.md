@@ -15,7 +15,7 @@ A modern, role-based leave management platform for organizations to manage emplo
   <img src="https://img.shields.io/badge/Source%20Code-GitHub-181717?style=for-the-badge&logo=github" alt="GitHub"/>
 </a> 
  
-<br/><br/>  
+<br/><br/>   
  
 <img src="https://img.shields.io/badge/React-Frontend-61DAFB?style=flat-square&logo=react&logoColor=black"/>
 <img src="https://img.shields.io/badge/Spring%20Boot-Backend-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
